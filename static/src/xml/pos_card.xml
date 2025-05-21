@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="show_product_quantity" xml:space="preserve">
+    <t t-name="my_pos.ProductCard" t-inherit="point_of_sale.ProductCard" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-name')]" position="after">
+            <t t-if="this.pos.config.enable_quantity_warning">
+                <span t-if="props.product.quantity_location == 0.0"
+                    class="text-danger m-1"> Stockout </span>
+                <h1 t-elif="this.pos.config.minimum_quantity >= props.product.quantity_location"
+                    t-out="props.product.quantity_location"
+                    class="display-6 fw-bolder text-warning m-0 me-1 mt-auto"/>
+                <h1 t-else=""
+                    t-out="props.product.quantity_location"
+                    class="display-6 fw-bolder text-light m-0 me-1 mt-auto"/>
+            </t>
+            <t t-elif="props.product.show_quantity_pos">
+                <h1 t-out="props.product.quantity_location"
+                    class=" display-6 fw-bolder text-light m-0 me-1 mt-auto"/>
+            </t>
+        </xpath>
+    </t>
+</templates>

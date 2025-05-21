@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="pos_config_view_form_inherit_stock_quantity" model="ir.ui.view">
+        <field name="name">pos.config.form.inherit.stock.quantity</field>
+        <field name="model">pos.config</field>
+        <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('o_settings_container')]" position="after">
+                <div class="col-12 col-lg-6 o_setting_box" id="stock_quantity_display">
+                    <div class="o_setting_left_pane">
+                        <field name="enable_quantity_warning"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group mt-2">
+                            <div class="row mt-2">
+                                <label for="enable_quantity_warning" string="Enable low stock warnings"/>
+                            </div>
+                            <div class="row mt-2" invisible="not enable_quantity_warning">
+                                <label for="minimum_quantity" string="Minimum quantity threshold" class="col-lg-3 o_light_label"/>
+                                <field name="minimum_quantity"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
